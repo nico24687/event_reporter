@@ -14,7 +14,9 @@ class Reporter
     end
   end
 
-  def count
-    records.count
+  def find(attribute, criteria)
+    @records.select do |record|
+       record.send(attribute).strip.downcase == criteria.strip.downcase
+    end
   end
 end
