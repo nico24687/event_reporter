@@ -1,10 +1,12 @@
 require './lib/reporter.rb'
+require './lib/queue.rb'
 require 'pry'
 
 class EventReporter
   def initialize
     @reporter = Reporter.new
     @input = ""
+    @queue = Queue.new([])
   end
 
   def start
@@ -29,8 +31,49 @@ class EventReporter
     case command
     when "load"
       @reporter.load_csv(args.first)
-      puts "Loaded #{@reporter.count} records from #{args.first}."
+      puts "Loaded #{@reporter.records.count} records from #{args.first}."
+    when "find"
+      @queue = Queue.new(@reporter.find(*args))
+      puts "Found #{@queue.count} matches"
+    when "queue"
+      case args.first
+      when "print"
+        @queue.print
+      end 
+    when "help"
+      print_help(args.join(" "))
     end
+  end
+
+  def print_help(input)
+    if input.empty?
+      puts "Available commands: load <filename>, find <attribute>
+       <criteria>, queue count, queue clear, queue print, 
+       queue print by <attribute>, queue save to <filename.csv>,
+       queue export html <filename.csv>, help <command>"
+      return
+    end
+
+    case input
+    when "load <filename>"
+      puts "Loads the csv file provided, if no file name given defaults to full_event_attendess.csv"
+    when "find <attribute> <criteria>"
+      puts "Populates the queue with records matching the given attribute and criteria"
+    when "queue count"
+      puts "Lists the amount of records in the current queue"
+    when "queue clear"
+      puts "Empties the current queue"
+    when "queue print"
+      puts "Prints out a tab deliminated table in a specific format"
+    when "queue print by <attribute>"
+      puts "Prints a table sorted by the specific attribute"
+    when "queue save to <filename.csv>"
+      puts "Exports the current queue to the specified filename as a CSV"
+    when "queue export html <filename.csv>"
+      puts "Exports the current queue to the specified filename as HTML"
+    when "help <command>"
+      puts "Provides a description of what each command will do"
+    end  
   end
 end
 

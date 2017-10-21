@@ -1,6 +1,6 @@
 class Attendee
-  attr_reader :id, :registration_date, :first_name, :last_name, :email,
-              :home_phone, :street, :city, :state, :zip_code
+  attr_reader :id, :registration_date, :first_name, :last_name, :email_address,
+              :home_phone, :street, :city, :state, :zipcode
   
   def initialize(hash)
     @id = hash[" "]
@@ -12,6 +12,19 @@ class Attendee
     @street = hash["Street"]
     @city = hash["City"]
     @state = hash["State"]
-    @hash = hash["Zipcode"]
+    @zipcode = hash["Zipcode"]
+  end
+
+  def to_a
+    [
+      @last_name,
+      @first_name,
+      @email_address,
+      @zipcode,
+      @city,
+      @state,
+      @street,
+      @home_phone
+    ]
   end
 end
