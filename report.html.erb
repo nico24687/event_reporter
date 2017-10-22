@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <table>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Zipcode</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+      </tr>
+      <% @attendees.each do |attendee| %>
+      <tr>
+        <td><%= attendee.last_name %></td>
+        <td><%= attendee.first_name %></td>
+        <td><%= attendee.email_address %></td>
+        <td><%= attendee.zipcode %></td>
+        <td><%= attendee.city %></td>
+        <td><%= attendee.state %></td>
+        <td><%= attendee.street %></td>
+        <td><%= attendee.home_phone %></td>
+      </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
