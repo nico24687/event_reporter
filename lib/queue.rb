@@ -31,7 +31,7 @@ class Queue
 
   def save(filename)
     CSV.open(filename, "w") do |csv|
-      csv << ["last name", "first name", "email", "zipcode", "city", "state", "address", "phone number"]
+      csv << ["id", "registration date", "first name", "last name",  "email", "phone number", "address", "city", "state", "zipcode"]
       @attendees.each do |attendee|
         csv << attendee.to_a 
       end

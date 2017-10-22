@@ -1,16 +1,16 @@
 <html>
   <body>
     <table>
-      <th>
-        <td>Last Name</td>
-        <td>First Name</td>
-        <td>Email</td>
-        <td>Zipcode</td>
-        <td>City</td>
-        <td>State</td>
-        <td>Address</td>
-        <td>Phone Number</td>
-      </th>
+      <tr>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Email</th>
+        <th>Zipcode</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+      </tr>
       <% @attendees.each do |attendee| %>
       <tr>
         <td><%= attendee.last_name %></td>

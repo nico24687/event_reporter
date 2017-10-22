@@ -30,16 +30,31 @@ class EventReporter
 
     case command
     when "load"
-      @reporter.load_csv(args.first)
-      puts "Loaded #{@reporter.records.count} records from #{args.first}."
+      #this needs to default to loading full_event_attendees.csv
+      @reporter.load_csv(args.first || "full_event_attendees.csv")
     when "find"
-      @queue = Queue.new(@reporter.find(*args))
-      puts "Found #{@queue.count} matches"
+      @queue = Queue.new(@reporter.find(args[0], args[1..-1].join(" ")))
     when "queue"
       case args.first
       when "print"
-        @queue.print
+        order_attribute = if args[1] == "by"
+          args[2]
+        else
+          args[1]
+        end
+
+        @queue.print(order_attribute)
+      when "clear"
+        @queue.clear
+      when "save"
+        @queue.save(args[2])
+      when "export"
+        @queue.export_html(args[2])
+      when "count"
+        puts @queue.count
       end 
+      
+      
     when "help"
       print_help(args.join(" "))
     end
@@ -64,7 +79,7 @@ class EventReporter
     when "queue clear"
       puts "Empties the current queue"
     when "queue print"
-      puts "Prints out a tab deliminated table in a specific format"
+      puts "Prints out a tab delimited table in a specific format"
     when "queue print by <attribute>"
       puts "Prints a table sorted by the specific attribute"
     when "queue save to <filename.csv>"

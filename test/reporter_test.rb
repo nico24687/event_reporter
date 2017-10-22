@@ -1,3 +1,4 @@
+# require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/reporter'
@@ -41,5 +42,14 @@ class ReporterTest < MiniTest::Test
     records = reporter.find(:first_name, "Jean")
 
     assert_equal ["8"], records.map(&:id)
+  end
+
+  def test_find_filters_nil_attributes
+    reporter = Reporter.new
+    reporter.load_csv("./test/test.csv")
+
+    records = reporter.find(:city, "Washington")
+
+    assert_equal ["1", "2"], records.map(&:id)
   end
 end 

@@ -1,3 +1,4 @@
+# require './test/test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/queue'
@@ -7,9 +8,9 @@ require 'pry'
 class QueueTest < MiniTest::Test
   def setup
     @attendees = [
-      Attendee.new({ " " => "1", "first_Name" => "John", "last_Name" => "Doe", "Email_Address" => "test@example.com", "Zipcode" => 20010, "City" => "Washington", "State" => "DC", "Street" => "3155 19th St NW", "HomePhone" => "6154385000" }),
-      Attendee.new({ " " => "2", "first_Name" => "Jane", "last_Name" => "Doe", "Email_Address" => "test2@example.com", "Zipcode" => 20011, "City" => "Saint Petersburg", "State" => "FL", "Street" => "4175 3rd Street North", "HomePhone" => "5154385100" }),
-      Attendee.new({ " " => "3", "first_Name" => "Jane", "last_Name" => "Dough", "Email_Address" => "test3@example.com", "Zipcode" => 20013, "City" => "Washington", "State" => "DC", "Street" => "3155 19th St NW", "HomePhone" => "4154385200" })
+      Attendee.new(["1", "reg date", "John", "Doe", "test@example.com", 20010, "Washington", "DC", "3155 19th St NW", "6154385000" ]),
+      Attendee.new(["2", "reg date", "Jane", "Doe", "test2@example.com", 20011, "Saint Petersburg", "FL", "4175 3rd Street North", "5154385100"]),
+      Attendee.new(["3", "reg date", "Jane", "Dough", "test3@example.com", 20013, "Washington", "DC", "3155 19th St NW", "4154385200"])
     ]
 
     @queue = Queue.new(@attendees)
