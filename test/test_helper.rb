@@ -1,6 +1,6 @@
-# require 'simplecov'
-# SimpleCov.start
+require 'simplecov'
+SimpleCov.start
 
-# gem "minitest"
-# require "minitest/autorun"
-# require "minitest/pride"
+gem "minitest"
+require "minitest/autorun"
+require "minitest/pride"

@@ -30,7 +30,6 @@ class EventReporter
 
     case command
     when "load"
-      #this needs to default to loading full_event_attendees.csv
       @reporter.load_csv(args.first || "full_event_attendees.csv")
     when "find"
       @queue = Queue.new(@reporter.find(args[0], args[1..-1].join(" ")))

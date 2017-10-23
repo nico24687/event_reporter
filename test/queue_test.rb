@@ -1,6 +1,4 @@
-# require './test/test_helper'
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/queue'
 require './lib/attendee'
 require 'pry'
@@ -28,7 +26,7 @@ class QueueTest < MiniTest::Test
 
   def test_print_has_correct_output
     @queue.print
-    # not my problem
+  
   end
 
   def test_print_can_sort_by_columns

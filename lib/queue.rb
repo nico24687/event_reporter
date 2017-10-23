@@ -23,7 +23,6 @@ class Queue
       @attendees
     end
 
-    # opportunity to refactor
     @sorted_attendees.each do |attendee|
       puts attendee.to_a.join("\t")
     end
