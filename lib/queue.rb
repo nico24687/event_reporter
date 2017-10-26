@@ -15,17 +15,21 @@ class Queue
   end
 
   def print(attribute = nil)
-    puts "LAST NAME\tFIRST NAME\tEMAIL\tZIPCODE\tCITY\tSTATE\tADDRESS\tPHONE"
-
+    header = "LAST NAME\tFIRST NAME\tEMAIL\tZIPCODE\tCITY\tSTATE\tADDRESS\tPHONE"
+    report = ""
     @sorted_attendees = if attribute
       @attendees.sort_by { |attendee| attendee.send(attribute) }
     else
       @attendees
     end
 
-    @sorted_attendees.each do |attendee|
-      puts attendee.to_a.join("\t")
-    end
+    field_names = [:last_name, :first_name, :email_address, :zipcode, :city, :state, :street, :home_phone]
+
+    body = @sorted_attendees.map do |attendee|
+      field_names.map { |field| attendee.send(field) }.join("\t")
+    end.join("\n")
+
+    [header, body].join("\n")
   end
 
   def save(filename)

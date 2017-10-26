@@ -25,8 +25,13 @@ class QueueTest < MiniTest::Test
   end
 
   def test_print_has_correct_output
-    @queue.print
+    expected = "LAST NAME\tFIRST NAME\tEMAIL\tZIPCODE\tCITY\tSTATE\tADDRESS\tPHONE\n" +
+               "Doe\tJohn\ttest@example.com\t20010\tWashington\tDC\t3155 19th St NW\t6154385000\n" +
+               "Doe\tJane\ttest2@example.com\t20011\tSaint Petersburg\tFL\t4175 3rd Street North\t5154385100\n" +
+               "Dough\tJane\ttest3@example.com\t20013\tWashington\tDC\t3155 19th St NW\t4154385200"
+    actual = @queue.print
   
+    assert_equal(expected, actual)
   end
 
   def test_print_can_sort_by_columns
